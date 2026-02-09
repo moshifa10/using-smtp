@@ -6,8 +6,28 @@ import datetime as dt
 from dotenv import load_dotenv
 
 
-
+BIRTHDAY = "birthdays.csv"
+random_templates = ["./letter_templates/letter_1.txt", "./letter_templates/letter_2.txt", "./letter_templates/letter_3.txt"]
 load_dotenv()
+
+data = pandas.read_csv(BIRTHDAY)
+
+today = dt.datetime.today()
+month = today.month
+day = today.day
+
+got = data[(data["month"] == month) & (data["day"] == day)]
+
+if not got.empty:
+    print("Birthday Found!")
+
+    # Open and get data and change the name
+
+    with open(random_templates) as file:
+        file_data = file.readlines()
+
+    
+
 ##################### Extra Hard Starting Project ######################
 
 # 1. Update the birthdays.csv
