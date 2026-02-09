@@ -47,8 +47,12 @@ if not got.empty:
         try:
             with smtplib.SMTP(host="smtp.gmail.com", port=587) as connection:
                 connection.starttls()
-                connection.login(user=email, password=password)
-                connection.sendmail(from_addr=email, to_addrs=okay, msg=f"Subject: Happy Birthday \n\n{combined_email}")
+                connection.login(user=email, 
+                                 password=password)
+                connection.sendmail(from_addr=email, 
+                                    to_addrs=okay, 
+                                    msg=f"Subject: Happy Birthday \n\n{combined_email}"
+                                    )
 
         except TimeoutError as e:
             print(f"Not working: because {e}")
