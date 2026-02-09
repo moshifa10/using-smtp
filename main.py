@@ -10,6 +10,9 @@ BIRTHDAY = "birthdays.csv"
 random_templates = ["./letter_templates/letter_1.txt", "./letter_templates/letter_2.txt", "./letter_templates/letter_3.txt"]
 load_dotenv()
 
+email = os.getenv(key="MY_EMAIL")
+password = os.getenv(key="MY_PASSWORD")
+
 data = pandas.read_csv(BIRTHDAY)
 
 today = dt.datetime.today()
@@ -35,7 +38,12 @@ if not got.empty:
             x = info.replace("[NAME]", name)
             clean_data.append(x)
 
-    print(clean_data)
+        combined_email = ''.join(clean_data)
+        # print(combined_email)
+
+    
+
+    
 
     
 
