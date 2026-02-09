@@ -22,11 +22,20 @@ if not got.empty:
     print("Birthday Found!")
 
     # Open and get data and change the name
-
-    with open(random_templates) as file:
+    chosen = random.choice(random_templates)
+    with open(chosen) as file:
         file_data = file.readlines()
+        clean_data = []
 
-    
+        for info in file_data:
+            # print(type(info))
+            # print(f"{got.name.to_string()}")
+            name = got.name.to_string()
+            name = name.replace("0", "").replace(" ", "")
+            x = info.replace("[NAME]", name)
+            clean_data.append(x)
+
+    print(clean_data)
 
     
 
