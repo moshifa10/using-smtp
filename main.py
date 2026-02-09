@@ -1,3 +1,13 @@
+import smtplib
+import random
+import os
+import pandas
+import datetime as dt
+from dotenv import load_dotenv
+
+
+
+load_dotenv()
 ##################### Extra Hard Starting Project ######################
 
 # 1. Update the birthdays.csv
