@@ -30,33 +30,31 @@ if not got.empty:
         file_data = file.readlines()
         clean_data = []
 
-        for info in file_data:
-            # print(type(info))
-            # print(f"{got.name.to_string()}")
-            name = got.name.to_string()
-            print(name)
-            name = name.replace("0", "").replace(" ", "")
-            x = info.replace("[NAME]", name)
-            clean_data.append(x)
+        for index,info in enumerate(file_data):
+            if index == 0:
+                name = got.name.to_string()
+                change = name.split()[-1] 
+                info = info.replace("[NAME]", change)
+                # print(x)
+            clean_data.append(info)
 
         combined_email = ''.join(clean_data)
         # print(combined_email)
 
         # Now the implematation of email
         sendee_email = got.email.to_string()
-        sendee_email = sendee_email.replace("0", "",count=1).replace(" ", "")
-        # print(sendee_email)
+        okay = sendee_email.split()[-1]
         try:
             with smtplib.SMTP(host="smtp.gmail.com", port=587) as connection:
                 connection.starttls()
                 connection.login(user=email, password=password)
-                connection.sendmail(from_addr=email, to_addrs=sendee_email, msg=f"Subject: Happy Birthday \n\n{combined_email}")
+                connection.sendmail(from_addr=email, to_addrs=okay, msg=f"Subject: Happy Birthday \n\n{combined_email}")
 
         except TimeoutError as e:
             print(f"Not working: because {e}")
 
         else:
-            print(f"Successfully sent an email to: {name}")
+            print(f"Successfully sent an email to: {change}")
     
 
 
