@@ -34,6 +34,7 @@ if not got.empty:
             # print(type(info))
             # print(f"{got.name.to_string()}")
             name = got.name.to_string()
+            print(name)
             name = name.replace("0", "").replace(" ", "")
             x = info.replace("[NAME]", name)
             clean_data.append(x)
@@ -41,21 +42,22 @@ if not got.empty:
         combined_email = ''.join(clean_data)
         # print(combined_email)
 
+        # Now the implematation of email
+        sendee_email = got.email.to_string()
+        sendee_email = sendee_email.replace("0", "",count=1).replace(" ", "")
+        # print(sendee_email)
+        try:
+            with smtplib.SMTP(host="smtp.gmail.com", port=587) as connection:
+                connection.starttls()
+                connection.login(user=email, password=password)
+                connection.sendmail(from_addr=email, to_addrs=sendee_email, msg=f"Subject: Happy Birthday \n\n{combined_email}")
+
+        except TimeoutError as e:
+            print(f"Not working: because {e}")
+
+        else:
+            print(f"Successfully sent an email to: {name}")
     
-
-    
-
-    
-
-##################### Extra Hard Starting Project ######################
-
-# 1. Update the birthdays.csv
-
-# 2. Check if today matches a birthday in the birthdays.csv
-
-# 3. If step 2 is true, pick a random letter from letter templates and replace the [NAME] with the person's actual name from birthdays.csv
-
-# 4. Send the letter generated in step 3 to that person's email address.
 
 
 
